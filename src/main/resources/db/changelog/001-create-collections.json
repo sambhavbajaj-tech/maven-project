@@ -1,0 +1,16 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "001-create-collections",
+        "author": "system",
+        "changes": [
+          { "createCollection": { "collectionName": "usersCol" } },
+          { "createCollection": { "collectionName": "ordersCol" } },
+          { "createCollection": { "collectionName": "productsCol" } },
+          { "createCollection": { "collectionName": "auditCol" } }
+        ]
+      }
+    }
+  ]
+}

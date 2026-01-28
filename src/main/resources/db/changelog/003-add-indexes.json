@@ -1,0 +1,17 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "003-create-user-role-age-index",
+        "author": "system",
+        "changes": [
+          {
+            "runCommand": {
+              "command": "{ \"createIndexes\": \"userCol\", \"indexes\": [ { \"key\": { \"role\": 1, \"age\": -1 }, \"name\": \"role_age_idx\" } ] }"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

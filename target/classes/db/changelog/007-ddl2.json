@@ -1,0 +1,17 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "003-create-user-role-age-index",
+        "author": "system",
+        "changes": [
+          {
+            "runCommand": {
+              "command": "{'create': 'usersnew'}"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

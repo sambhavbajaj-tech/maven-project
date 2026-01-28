@@ -1,0 +1,34 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "004-update-age-for-all-users-with-backup",
+        "author": "system",
+        "changes": [
+          {
+            "runCommand": {
+              "command": "{ \"update\": \"userCol\", \"updates\": [ { \"q\": { \"age\": { \"$exists\": true } }, \"u\": [ { \"$set\": { \"age_backup\": \"$age\" } } ], \"multi\": true } ] }"
+            }
+          },
+          {
+            "runCommand": {
+              "command": "{ \"update\": \"userCol\", \"updates\": [ { \"q\": {}, \"u\": { \"$set\": { \"age\": 30 } }, \"multi\": true } ] }"
+            }
+          }
+        ],
+        "rollback": [
+          {
+            "runCommand": {
+              "command": "{ \"update\": \"userCol\", \"updates\": [ { \"q\": { \"age_backup\": { \"$exists\": true } }, \"u\": [ { \"$set\": { \"age\": \"$age_backup\" } } ], \"multi\": true } ] }"
+            }
+          },
+          {
+            "runCommand": {
+              "command": "{ \"update\": \"userCol\", \"updates\": [ { \"q\": { \"age_backup\": { \"$exists\": true } }, \"u\": { \"$unset\": { \"age_backup\": \"\" } }, \"multi\": true } ] }"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
